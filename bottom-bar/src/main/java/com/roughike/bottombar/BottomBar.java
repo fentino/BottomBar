@@ -942,8 +942,10 @@ public class BottomBar extends LinearLayout implements View.OnClickListener, Vie
     }
 
     private void updateSelectedTab(int newPosition) {
+        currentTabPosition = newPosition;
+        
         int newTabId = getTabAtPosition(newPosition).getId();
-
+        
         if (newPosition != currentTabPosition) {
             if (onTabSelectListener != null) {
                 onTabSelectListener.onTabSelected(newTabId);
@@ -951,8 +953,6 @@ public class BottomBar extends LinearLayout implements View.OnClickListener, Vie
         } else if (onTabReselectListener != null && !ignoreTabReselectionListener) {
             onTabReselectListener.onTabReSelected(newTabId);
         }
-
-        currentTabPosition = newPosition;
 
         if (ignoreTabReselectionListener) {
             ignoreTabReselectionListener = false;
